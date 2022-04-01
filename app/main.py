@@ -6,9 +6,7 @@ app = Flask(__name__)
 
 secret_key = secrets.token_hex(16)
 app.config['SECRET_KEY'] = secret_key
-socket = SocketIO(app, 
-        { 'cors_allowed_origins': 'https://en-croissant.netlify.app' }
-        )
+socket = SocketIO(app, cors_allowed_origins="*")
 
 @app.route("/")
 def home_view():
