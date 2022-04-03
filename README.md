@@ -3,8 +3,8 @@
 <!-- badges -->
 
 [![MIT license](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/mit-license.php)
-[![GitHub latest commit](https://img.shields.io/github/last-commit/u-s-c-l/i-t-t-w-s-d-server.svg)](https://github.com/u-s-c-l/i-t-t-w-s-d-server)
-[![GitHub forks](https://img.shields.io/github/forks/u-s-c-l/i-t-t-w-s-d-server.svg)](https://github.com/u-s-c-l/i-t-t-w-s-d-server)
+[![GitHub latest commit](https://img.shields.io/github/last-commit/en-croissant/ec-flask.svg)](https://github.com/en-croissant/ec-flask)
+[![GitHub forks](https://img.shields.io/github/forks/en-croissant/ec-flask.svg)](https://github.com/en-croissant/ec-flask)
 
 This repo hosts the server side of [En Croissant](https://github.com/en-croissant/ec-client).
 
