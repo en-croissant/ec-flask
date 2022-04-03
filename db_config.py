@@ -1,4 +1,4 @@
-def get_collection():
+def get_database():
   
   # Add a condition here:
   # If in dev environment run the usual stuff
@@ -17,7 +17,7 @@ def get_collection():
 
 if __name__ == "__main__":
   import json
-  database = get_collection()
+  database = get_database()
   
   user_collection = database['users']
   user_file = open("user_data.json")
