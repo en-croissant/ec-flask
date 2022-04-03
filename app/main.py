@@ -1,8 +1,10 @@
 from flask import Flask
+from flask_cors import CORS
 from flask_socketio import SocketIO, emit 
 import secrets
 
 app = Flask(__name__)
+CORS(app)
 
 secret_key = secrets.token_hex(16)
 app.config['SECRET_KEY'] = secret_key
