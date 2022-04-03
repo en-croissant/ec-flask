@@ -4,7 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
+psycopg2 = "*"
 flask = "*"
+python-dotenv = "*"
+flask-cors = "*"
 gunicorn = "*"
 flask-socketio = "*"
 
@@ -12,3 +17,8 @@ flask-socketio = "*"
 
 [requires]
 python_version = "3.10"
+
+[scripts]
+dev = "bash -c \"export FLASK_ENV='development' && flask run --host=0.0.0.0\""
+test = "pytest ."
+coverage = "pytest --cov-report term-missing --cov=."
