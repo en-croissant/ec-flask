@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "071c0bc5a7cedb36618f47f79fdd482a64b0c27e16ae369ce2365eedf7102a5a"
+            "sha256": "954bc4cb1974e7317044262b2ed7d1d2c0d8a925f35849076568ba18aa71b4b1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -64,6 +64,14 @@
             "index": "pypi",
             "version": "==3.0.10"
         },
+        "flask-login": {
+            "hashes": [
+                "sha256:5cb01ce4dc253967b6ac722a11e46de83b6272ef7a19cc7b5725ae636916d04d",
+                "sha256:aa84fcfb4c3cf09ca58c08e816b7bce73f1349ba1cf13d00d8dffc5872d5fcf6"
+            ],
+            "index": "pypi",
+            "version": "==0.6.0"
+        },
         "flask-socketio": {
             "hashes": [
                 "sha256:07e1899e3b4851978b2ac8642080156c6294f8d0fc5212b4e4bcca713830306a",
@@ -79,14 +87,6 @@
             ],
             "index": "pypi",
             "version": "==20.1.0"
-        },
-        "install": {
-            "hashes": [
-                "sha256:0d3fadf4aa62c95efe8d34757c8507eb46177f86c016c21c6551eafc6a53d5a9",
-                "sha256:e67c8a0be5ccf8cb4ffa17d090f3a61b6e820e6a7e21cd1d2c0f7bc59b18e647"
-            ],
-            "index": "pypi",
-            "version": "==1.3.5"
         },
         "itsdangerous": {
             "hashes": [
