@@ -3,7 +3,7 @@ from flask_cors import CORS
 from werkzeug import exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app.models import Users, Admin
+from app.models import Users
 from app.extensions import db
 
 auth = Blueprint('auth', __name__) 
@@ -59,6 +59,7 @@ def register():
                 return jsonify('Username already exists!'), 202
             
             hash = generate_password_hash(newPass)
+            print(hash.length)
             new_user = Users(
                 username = req['username'],
                 email = req['email'], 
@@ -73,4 +74,14 @@ def register():
         except:
             raise exceptions.InternalServerError()
 
+@auth.errorhandler(exceptions.NotFound)
+def handle_404(err):
+    return {'message': f'Oops! {err}'}, 404
 
+@auth.errorhandler(exceptions.BadRequest)
+def handle_400(err):
+    return {'message': f'Oops! {err}'}, 400
+
+@auth.errorhandler(exceptions.InternalServerError)
+def handle_500(err):
+    return {'message': f"It's not you, it's us"}, 500
