@@ -5,6 +5,7 @@ from werkzeug import exceptions
 from flask_cors import CORS
 
 from app.models import Users
+from app.extensions import db
 
 main = Blueprint('main', __name__) 
 CORS(main)
@@ -30,6 +31,32 @@ def getAllUsers():
             raise exceptions.NotFound("There are no users currently!")
         except:
             raise exceptions.InternalServerError()
+    elif request.method == 'POST':
+        try:
+            req = request.get_json()
+            new_user = Users(
+                username = req['username'],
+                email = req['email'], 
+                password_digest = req['password_digest'],
+                rank = req['rank']
+            )
+
+            db.session.add(new_user)
+            db.session.commit()
+            return f"New user was added!", 201
+
+        except: 
+            raise exceptions.InternalServerError()
+
+@main.get('/users/<int:user_id>')
+def getProductById(user_id):
+    try: 
+        user = Users.query.get_or_404(user_id)
+        return  jsonify([user.serialize()])
+    except exceptions.NotFound:
+        raise exceptions.NotFound("User not found!")
+    except:
+        raise exceptions.InternalServerError()
 
 # @socket.on('connect')
 # def test_connect():

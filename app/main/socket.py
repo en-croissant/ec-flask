@@ -1,5 +1,5 @@
-from flask import Flask, request, jsonify, Blueprint
-from flask_socketio import SocketIO, emit 
+
+from flask_socketio import emit 
 
 
 from .. import socketio
@@ -7,3 +7,5 @@ from .. import socketio
 @socketio.on('connect')
 def test_connect():
     emit('hello world', {'data': 'hello world'})
+
+
