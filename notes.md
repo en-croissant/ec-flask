@@ -1,6 +1,8 @@
 
 
 
+psql postgresql://rbcbtrrvoeuhdt:10a5ae6e462f7f61df5cf135df75d9986ec4f6d44f87003cb33f47262897e81c@ec2-52-18-116-67.eu-west-1.compute.amazonaws.com:5432/da7alfg2fe494l
+
 
 inside database:
 
@@ -76,5 +78,5 @@ INSERT INTO chat (lobby_id, user_id, message, time) VALUES (1, 1, 'hello', '2022
 
 inside the .env file:
 
-DATABASE_URL=postgres://yaegrrmpgbwrti:ec575d01211bf2d06c70954781406007730dd6efc093eecb12972f44c9c530f7@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/dcqpm3ubt7k4mk
+DATABASE_URL=postgres://rbcbtrrvoeuhdt:10a5ae6e462f7f61df5cf135df75d9986ec4f6d44f87003cb33f47262897e81c@ec2-52-18-116-67.eu-west-1.compute.amazonaws.com:5432/da7alfg2fe494l
 SECRET_KEY=gg
