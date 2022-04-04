@@ -75,4 +75,14 @@ def register():
         except:
             raise exceptions.InternalServerError()
 
+@auth.errorhandler(exceptions.NotFound)
+def handle_404(err):
+    return {'message': f'Oops! {err}'}, 404
 
+@auth.errorhandler(exceptions.BadRequest)
+def handle_400(err):
+    return {'message': f'Oops! {err}'}, 400
+
+@auth.errorhandler(exceptions.InternalServerError)
+def handle_500(err):
+    return {'message': f"It's not you, it's us"}, 500

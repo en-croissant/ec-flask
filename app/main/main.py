@@ -10,9 +10,12 @@ from app.extensions import db
 main = Blueprint('main', __name__) 
 CORS(main)
 
+<<<<<<< HEAD
 # from app.routes import auth
 # from app import errors
 
+=======
+>>>>>>> 37ebd3ce1cffbc0a12f6702907bb9f561b2b938c
 # secret_key = secrets.token_hex(16)
 # main.config['SECRET_KEY'] = secret_key
 
@@ -60,6 +63,7 @@ def getUserById(user_id):
         raise exceptions.InternalServerError()
 
 
+<<<<<<< HEAD
 
 
 # @main.route('/admins', methods=['GET','POST'])
@@ -92,6 +96,8 @@ def getUserById(user_id):
 
 
 
+=======
+>>>>>>> 37ebd3ce1cffbc0a12f6702907bb9f561b2b938c
 @main.route('/lobby', methods=['GET','POST'])
 def getAllLobbies():
     if request.method == 'GET':
@@ -154,7 +160,17 @@ def getAllChats():
 
 
 
+@main.errorhandler(exceptions.NotFound)
+def handle_404(err):
+    return {'message': f'Oops! {err}'}, 404
 
+@main.errorhandler(exceptions.BadRequest)
+def handle_400(err):
+    return {'message': f'Oops! {err}'}, 400
+
+@main.errorhandler(exceptions.InternalServerError)
+def handle_500(err):
+    return {'message': f"It's not you, it's us"}, 500
 
 
 
