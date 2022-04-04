@@ -9,8 +9,11 @@ from app.models import Users
 main = Blueprint('main', __name__) 
 CORS(main)
 
+
 # secret_key = secrets.token_hex(16)
 # main.config['SECRET_KEY'] = secret_key
+
+
 # socket = SocketIO(main, cors_allowed_origins="*")
 
 @main.route("/")
