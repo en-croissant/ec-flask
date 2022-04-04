@@ -10,6 +10,12 @@ from app.extensions import db
 main = Blueprint('main', __name__) 
 CORS(main)
 
+
+# from app.routes import auth
+# from app import errors
+
+
+
 # secret_key = secrets.token_hex(16)
 # main.config['SECRET_KEY'] = secret_key
 
@@ -55,6 +61,38 @@ def getUserById(user_id):
         raise exceptions.NotFound("User not found!")
     except:
         raise exceptions.InternalServerError()
+
+
+
+
+
+# @main.route('/admins', methods=['GET','POST'])
+# def getAllAdmins():
+#     if request.method == 'GET':
+#         try: 
+#             allAdmins = Admin.query.all()
+#             return  jsonify([e.serialize() for e in allAdmins])
+#         except exceptions.NotFound:
+#             raise exceptions.NotFound("There are no admins currently!")
+#         except:
+#             raise exceptions.InternalServerError()
+#     elif request.method == 'POST':
+#         try:
+#             req = request.get_json()
+#             new_admin = Admin(
+#                 username = req['username'],
+#                 email = req['email'], 
+#                 password_digest = req['password_digest'],
+#             )
+
+#             db.session.add(new_admin)
+#             db.session.commit()
+#             return f"New admin was added!", 201
+
+#         except: 
+#             raise exceptions.InternalServerError()
+
+
 
 
 @main.route('/lobby', methods=['GET','POST'])

@@ -23,7 +23,6 @@ def login():
                 raise exceptions.BadRequest('No username provided')
             if not req['password']:
                 raise exceptions.BadRequest('No password provided')
-            
             user = Users.query.get(username=req['username'])
             
             authed = check_password_hash(user.password_digest, req['password'])
@@ -53,7 +52,6 @@ def register():
         try:
             req = request.get_json()
             newUsername = req['username']
-            # newEmail = req['email']
             newPass = req['password']
             
             user = Users.query.get(username=newUsername)
@@ -69,6 +67,7 @@ def register():
                 password_digest = hash,
                 rank = 0
             )
+            print(new_user)
             db.session.add(new_user)
             db.session.commit()
             
