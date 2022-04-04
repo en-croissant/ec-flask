@@ -17,21 +17,26 @@ def login():
     if request.method=="POST":
         try:
             req = request.get_json()
-            if not req['username']:
+            username = req['username']
+            password = req['password']
+            
+            if not username:
                 raise exceptions.BadRequest('No username provided')
-            if not req['password']:
+            if not password:
                 raise exceptions.BadRequest('No password provided')
-            user = Users.query.get(username=req['username'])
+            
+            user = Users.query.filter_by(username=username).first()
             
             authed = check_password_hash(user.password_digest, req['password'])
             if not authed:
-                # Raise error if user is unauthorized (incorrect password)
-                pass
+                raise exceptions.Unauthorized('Incorrect password.')
+            
             token = user.encode_auth_token(user.username)
             if token:
+                print(1)
                 response = {
                     'success': True,
-                    'token': 'Bearer ' + token.decode('UTF-8')
+                    'token': 'Bearer ' + token
                 }
                 return jsonify(response), 200
             
@@ -40,6 +45,8 @@ def login():
             # Might not even need to catch errors here as they get caught automatically by the error handle routes
             # Are the error handling routes being correctly imported?
             raise exceptions.BadRequest()
+        except exceptions.Unauthorized:
+            raise exceptions.Unauthorized('Incorrect password.')
         except:
             raise exceptions.InternalServerError()
   
@@ -52,9 +59,9 @@ def register():
             username = req['username']
             password = req['password']
             
-            # user = Users.query.filter(username=username).first()
-            # if user:
-            #     return jsonify('Username already exists!'), 202
+            user = Users.query.filter('username'==username)
+            if user:
+                return jsonify('Username already exists!'), 202
             
             hash = generate_password_hash(password)
             
@@ -72,14 +79,21 @@ def register():
         
         except:
             raise exceptions.InternalServerError()
+        
+        
+        
+@auth.errorhandler(exceptions.BadRequest)
+def handle_400(err):
+    return {'message': f'Oops! {err}'}, 400
+
+
+
+
 
 @auth.errorhandler(exceptions.NotFound)
 def handle_404(err):
     return {'message': f'Oops! {err}'}, 404
 
-@auth.errorhandler(exceptions.BadRequest)
-def handle_400(err):
-    return {'message': f'Oops! {err}'}, 400
 
 @auth.errorhandler(exceptions.InternalServerError)
 def handle_500(err):
