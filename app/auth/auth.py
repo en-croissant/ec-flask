@@ -13,7 +13,7 @@ CORS(auth)
 
 # Login route
 @auth.route("/auth/login", methods=["POST"])
-def login(requset):
+def login():
     if request.method=="POST":
         try:
             req = request.get_json()
@@ -46,7 +46,7 @@ def login(requset):
   
 # Registration route
 @auth.route("/auth/register", methods=["POST"])
-def register(request):
+def register():
     if request.method=="POST":
         try:
             req = request.get_json()
