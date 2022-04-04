@@ -87,7 +87,9 @@ def handle_400(err):
     return {'message': f'Oops! {err}'}, 400
 
 
-
+@auth.errorhandler(exceptions.Unauthorized)
+def handle_401(err):
+    return {'message': f'Not authorized! {err}'}, 401
 
 
 @auth.errorhandler(exceptions.NotFound)
