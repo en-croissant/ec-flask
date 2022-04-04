@@ -74,3 +74,7 @@ INSERT INTO chat (lobby_id, user_id, message, time) VALUES (1, 1, 'hello', '2022
 
 
 
+inside the .env file:
+
+DATABASE_URL=postgres://yaegrrmpgbwrti:ec575d01211bf2d06c70954781406007730dd6efc093eecb12972f44c9c530f7@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/dcqpm3ubt7k4mk
+SECRET_KEY=gg
