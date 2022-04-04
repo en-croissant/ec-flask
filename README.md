@@ -22,7 +22,10 @@ This repo hosts the server side of [En Croissant](https://github.com/en-croissan
 - Clone the repo
 - Open terminal and navigate to the `/ec-flask` folder
 - Run `pipenv install` to install dependencies
-- Run `pipenv run start` to run the server locally
+- Create a `.env` file and add the following:
+  - `DATABASE_URL=postgres://rbcbtrrvoeuhdt:10a5ae6e462f7f61df5cf135df75d9986ec4f6d44f87003cb33f47262897e81c@ec2-52-18-116-67.eu-west-1.compute.amazonaws.com:5432/da7alfg2fe494l`
+  - `SECRET=<choose_your_secret>`
+- Run `pipenv run dev` to run the server locally
 
 ### Deployment
 
