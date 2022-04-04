@@ -15,7 +15,6 @@ psycopg2-binary = "*"
 python-dotenv = "*"
 simple-websocket = "*"
 pyjwt = "*"
-flask-bcrypt = "*"
 
 [dev-packages]
 

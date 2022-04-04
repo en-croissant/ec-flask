@@ -2,14 +2,12 @@ from flask import request, jsonify, Blueprint
 from flask_cors import CORS
 from werkzeug import exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_bcrypt import Bcrypt
 
 from app.models import Users
 from app.extensions import db
 
 auth = Blueprint('auth', __name__) 
 CORS(auth)
-# Bcrypt(auth)
 
 # from app.models import User
 
