@@ -21,7 +21,7 @@ class Users(db.Model):
 
     
     def __repr__(self):
-        return '<id {}>'.format(self.user_id)
+        return '<user {}>'.format(self.username)
     
     def serialize(self):
         return {
@@ -40,8 +40,8 @@ class Users(db.Model):
         """
         try:
             payload = {
-                'exp': datetime.datetime.bstnow() + datetime.timedelta(days=1),
-                'iat': datetime.datetime.bstnow(),
+                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=1),
+                'iat': datetime.datetime.utcnow(),
                 'sub': username
             }
             return jwt.encode(
