@@ -1,15 +1,15 @@
 from werkzeug import exceptions
 
-from app import app
+from app.main import main
 
-@app.errorhandler(exceptions.NotFound)
+@main.errorhandler(exceptions.NotFound)
 def handle_404(err):
     return {'message': f'Oops! {err}'}, 404
 
-@app.errorhandler(exceptions.BadRequest)
+@main.errorhandler(exceptions.BadRequest)
 def handle_400(err):
     return {'message': f'Oops! {err}'}, 400
 
-@app.errorhandler(exceptions.InternalServerError)
+@main.errorhandler(exceptions.InternalServerError)
 def handle_500(err):
     return {'message': f"It's not you, it's us"}, 500

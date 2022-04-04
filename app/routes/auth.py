@@ -1,18 +1,20 @@
 from flask import request, jsonify
 
-from app import app
+from app.main import main
 from app.controllers import auth
 
 # Login route
-@app.route("/auth/login", methods=["POST"])
+@main.route("/auth/login", methods=["POST"])
 def handle_login():
   if request.method=="POST":
-    response, code = auth.login(request)
+    req = request.get_json()
+    response, code = auth.login(req)
     return jsonify(response), code
   
 # Registration route
-@app.route("/auth/register", methods=["POST"])
+@main.route("/auth/register", methods=["POST"])
 def handle_reg():
   if request.method=="POST":
-    response, code  = auth.register(request)
+    req = request.get_json()
+    response, code  = auth.register(req)
     return jsonify(response), code

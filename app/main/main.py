@@ -10,6 +10,9 @@ from app.extensions import db
 main = Blueprint('main', __name__) 
 CORS(main)
 
+from app.routes import auth
+from app import errors
+
 # secret_key = secrets.token_hex(16)
 # main.config['SECRET_KEY'] = secret_key
 
