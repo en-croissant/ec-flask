@@ -16,6 +16,9 @@ def create_app(config_file='settings.py'):
 
     app.register_blueprint(main)
     app.register_blueprint(auth)
+    
+    from app import errors
+    
     socketio.init_app(app)
 
     return app
