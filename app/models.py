@@ -1,5 +1,20 @@
 from .extensions import db 
 
+
+# psql postgresql://yaegrrmpgbwrti:ec575d01211bf2d06c70954781406007730dd6efc093eecb12972f44c9c530f7@ec2-99-80-170-190.eu-west-1.compute.amazonaws.com:5432/dcqpm3ubt7k4mk
+
+
+# DROP TABLE IF EXISTS users;
+# CREATE TABLE users (
+#     user_id serial PRIMARY KEY,
+#     username varchar(100),
+#     email varchar(100),
+#     password_digest varchar(100),
+#     rank int
+# );
+
+# INSERT INTO users (username, email, password_digest, rank) VALUES ('test', 'test@test.com', 'test', 4);
+
 class Users(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(100))
@@ -95,4 +110,6 @@ class Chat(db.Model):
             'message': self.message,
             'time': self.time
     }
+
+
 
