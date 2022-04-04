@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "2b06d24babdef565e68ec4d9f555bccad894ea36901568b32c1a20b77eaa648b"
+            "sha256": "64fbeb92eeb4ab0053cbeb4770ecd5170231bdaed8771628d2c9b9ac3f5cc9d8"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -32,6 +32,14 @@
             "index": "pypi",
             "version": "==2021.10.8"
         },
+        "chess": {
+            "hashes": [
+                "sha256:02d1169a3db21451216474971f95b0609f4a22a18d2ced591a04b038357838fb",
+                "sha256:7791833312ca930821a415d01e5b743e99fb540d65cae6cca0e02ba6a352a452"
+            ],
+            "index": "pypi",
+            "version": "==1.9.0"
+        },
         "click": {
             "hashes": [
                 "sha256:24e1a4a9ec5bf6299411369b208c1df2188d9eb8d916302fe6bf03faed227f1e",
@@ -39,14 +47,6 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==8.1.2"
-        },
-        "colorama": {
-            "hashes": [
-                "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b",
-                "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"
-            ],
-            "markers": "platform_system == 'Windows'",
-            "version": "==0.4.4"
         },
         "flask": {
             "hashes": [
@@ -222,6 +222,14 @@
             ],
             "index": "pypi",
             "version": "==4.0.2"
+        },
+        "python-chess": {
+            "hashes": [
+                "sha256:8cad0388c42242d890ac6368ad64def15cd0165db033df0ad479492e266e5e6c",
+                "sha256:93b562f8f1124cb7bf56fb095e18743758e69dc6a028ccda0badcaa5c59d88c8"
+            ],
+            "index": "pypi",
+            "version": "==1.999"
         },
         "python-engineio": {
             "hashes": [

@@ -16,6 +16,10 @@ def home_view():
 def test_connect():
     emit('hello world', {'data': 'hello world'})
 
+@socket.on('move')
+def test_move(data):
+    print(data)
+
 
 if __name__ == '__main__':
     socket.run(app)
