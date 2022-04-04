@@ -1,26 +1,20 @@
-from flask import Flask
-from flask_cors import CORS
-from flask_socketio import SocketIO, emit 
-import secrets
+from flask import Flask 
+from .extensions import db
+from .main.main import main
+from flask_socketio import SocketIO
 
-app = Flask(__name__)
-CORS(app)
-
-from app.routes import auth
-from app import errors
-
-secret_key = secrets.token_hex(16)
-app.config['SECRET_KEY'] = secret_key
-socket = SocketIO(app, cors_allowed_origins="*")
-
-@app.route("/")
-def home_view():
-        return "<h1>Hello world</h1>"
-
-@socket.on('connect')
-def test_connect():
-    emit('hello world', {'data': 'hello world'})
+socketio = SocketIO()
 
 
-if __name__ == '__main__':
-    socket.run(app)
+def create_app(config_file='settings.py'):
+    app = Flask(__name__)
+
+    app.config.from_pyfile(config_file)
+
+    db.init_app(app)
+
+    app.register_blueprint(main)
+    socketio.init_app(app)
+
+    return app
+
