@@ -1,6 +1,5 @@
-from email.mime import application
 from flask import Flask 
-from flask_socketio import SocketIO, emit 
+# from flask_socketio import SocketIO, emit 
 
 from .extensions import db
 from .main import main
