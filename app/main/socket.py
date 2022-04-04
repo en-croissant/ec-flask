@@ -1,11 +1,12 @@
-
-from flask_socketio import emit 
-
-
 from .. import socketio
+from flask_socketio import emit
 
-@socketio.on('connect')
-def test_connect():
-    emit('hello world', {'data': 'hello world'})
+def test():
+    @socketio.on('connect')
+    def test_connect():
+        print("""
+    WOW SO AMAZING
+                """)
+        emit('hello world', {'data': 'hello world'})
 
 
