@@ -9,6 +9,8 @@ gunicorn = "*"
 flask-socketio = "*"
 python-chess = "*"
 chess = "*"
+pymongo = "*"
+certifi = "*"
 
 [dev-packages]
 
