@@ -49,23 +49,22 @@ def register():
     if request.method=="POST":
         try:
             req = request.get_json()
-            newUsername = req['username']
-            newPass = req['password']
+            username = req['username']
+            password = req['password']
             
-            user = Users.query.get(username=newUsername)
-            if user:
-                return jsonify('Username already exists!'), 202
+            # user = Users.query.filter(username=username).first()
+            # if user:
+            #     return jsonify('Username already exists!'), 202
             
-            hash = generate_password_hash(newPass)
-            print(hash)
-            print(hash.length)
+            hash = generate_password_hash(password)
+            
             new_user = Users(
                 username = req['username'],
                 email = req['email'], 
                 password_digest = hash,
                 rank = 0
             )
-            print(new_user)
+            
             db.session.add(new_user)
             db.session.commit()
             
