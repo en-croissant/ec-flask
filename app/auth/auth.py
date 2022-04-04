@@ -2,12 +2,14 @@ from flask import request, jsonify, Blueprint
 from flask_cors import CORS
 from werkzeug import exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
+from flask_bcrypt import Bcrypt
 
 from app.models import Users
 from app.extensions import db
 
 auth = Blueprint('auth', __name__) 
 CORS(auth)
+# Bcrypt(auth)
 
 # from app.models import User
 
@@ -32,7 +34,7 @@ def login():
             if token:
                 response = {
                     'success': True,
-                    'token': 'Bearer ' + token
+                    'token': 'Bearer ' + token.decode('UTF-8')
                 }
                 return jsonify(response), 200
             
@@ -51,7 +53,7 @@ def register():
         try:
             req = request.get_json()
             newUsername = req['username']
-            newEmail = req['email']
+            # newEmail = req['email']
             newPass = req['password']
             
             user = Users.query.get(username=newUsername)
@@ -59,6 +61,7 @@ def register():
                 return jsonify('Username already exists!'), 202
             
             hash = generate_password_hash(newPass)
+            print(hash)
             print(hash.length)
             new_user = Users(
                 username = req['username'],
