@@ -26,9 +26,15 @@ def login(requset):
             
             authed = check_password_hash(user.password_digest, req['password'])
             if not authed:
-                # Raise error if user is unauthorized
+                # Raise error if user is unauthorized (incorrect password)
                 pass
-            
+            token = user.encode_auth_token(user.username)
+            if token:
+                response = {
+                    'success': True,
+                    'token': 'Bearer ' + token
+                }
+                return jsonify(response), 200
             
         except exceptions.BadRequest:
             # Be specific about the error
