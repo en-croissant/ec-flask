@@ -50,7 +50,7 @@ def register(request):
             
             user = Users.query.get(username=newUsername)
             if user:
-                raise exceptions.BadRequest("Username already taken")
+                return jsonify('Username already exists!'), 202
             
             hash = generate_password_hash(newPass)
             new_user = Users(
