@@ -3,7 +3,7 @@ from flask_cors import CORS
 from werkzeug import exceptions
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from app.models import Users, Admin
+from app.models import Users
 from app.extensions import db
 
 auth = Blueprint('auth', __name__) 
@@ -13,7 +13,7 @@ CORS(auth)
 
 # Login route
 @auth.route("/auth/login", methods=["POST"])
-def login(requset):
+def login():
     if request.method=="POST":
         try:
             req = request.get_json()
@@ -21,7 +21,6 @@ def login(requset):
                 raise exceptions.BadRequest('No username provided')
             if not req['password']:
                 raise exceptions.BadRequest('No password provided')
-            
             user = Users.query.get(username=req['username'])
             
             authed = check_password_hash(user.password_digest, req['password'])
@@ -46,25 +45,28 @@ def login(requset):
   
 # Registration route
 @auth.route("/auth/register", methods=["POST"])
-def register(request):
+def register():
     if request.method=="POST":
         try:
             req = request.get_json()
-            newUsername = req['username']
-            newEmail = req['email']
+            print(req)
+            # newUsername = req['username']
             newPass = req['password']
+            print(newPass)
             
-            user = Users.query.get(username=newUsername)
-            if user:
-                return jsonify('Username already exists!'), 202
+            # user = Users.query.get(username=newUsername)
+            # if user:
+            #     return jsonify('Username already exists!'), 202
             
             hash = generate_password_hash(newPass)
+            print(hash)
             new_user = Users(
                 username = req['username'],
                 email = req['email'], 
                 password_digest = hash,
                 rank = 0
             )
+            print(new_user)
             db.session.add(new_user)
             db.session.commit()
             
