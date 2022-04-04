@@ -17,6 +17,8 @@ simple-websocket = "*"
 pyjwt = "*"
 python-chess = "*"
 chess = "*"
+pytest = "*"
+pytest-cov = "*"
 
 [dev-packages]
 
