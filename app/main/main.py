@@ -63,7 +63,16 @@ def getAllLobbies():
             raise exceptions.InternalServerError()
 
 
-            
+@main.get('/lobby/<int:lobby_id>')
+def getLobbyById(lobby_id):
+    try: 
+        lobby = Lobby.query.get_or_404(lobby_id)
+        return  jsonify([lobby.serialize()])
+    except exceptions.NotFound:
+        raise exceptions.NotFound("Lobby not found!")
+
+
+
 @main.route('/chat', methods=['GET','POST'])
 def getAllChats():
     if request.method == 'GET':
