@@ -26,6 +26,8 @@ def login():
                 raise exceptions.BadRequest('No password provided')
             
             user = Users.query.filter_by(username=username).first()
+            if user==None:
+                raise exceptions.BadRequest()
             
             authed = check_password_hash(user.password_digest, req['password'])
             if not authed:
@@ -33,7 +35,6 @@ def login():
             
             token = user.encode_auth_token(user.username)
             if token:
-                print(1)
                 response = {
                     'success': True,
                     'token': 'Bearer ' + token
@@ -59,8 +60,8 @@ def register():
             username = req['username']
             password = req['password']
             
-            user = Users.query.filter('username'==username)
-            if user:
+            user = Users.query.filter_by(username=username).first()
+            if user!=None:
                 return jsonify('Username already exists!'), 202
             
             hash = generate_password_hash(password)
