@@ -20,8 +20,8 @@ def create_app(config_file='settings.py'):
     socketio.init_app(app, cors_allowed_origins="*")
 
     # For some reason this is the only place I can put the import
-    from .main.socket import test
-    test()
+    from .main.socket import chess_game
+    chess_game()
 
     return app
 
