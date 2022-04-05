@@ -11,7 +11,7 @@ CREATE TABLE users (
     user_id serial PRIMARY KEY,
     username varchar(100),
     email varchar(100),
-    password_digest varchar(100),
+    password_digest varchar(1000),
     rank int,
     admin boolean
 );

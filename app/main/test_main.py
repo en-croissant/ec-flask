@@ -27,6 +27,18 @@ def test_get_alllobbies(api):
     assert app.status == '200 OK'
     assert b'player_1_key' in app.get_data()
 
+
+def test_get_onelobby(api):
+    app = api.get('/lobby/1')
+    assert app.status == '200 OK'
+    assert b'lobby_id' in app.get_data()
+
+def test_get_onelobby_notfound(api):
+    app = api.get('/lobby/100')
+    assert app.status == '404 NOT FOUND'
+    assert b'Lobby not found' in app.get_data()
+
+
 def test_get_allchats(api):
     app = api.get('/chat')
     assert app.status == '200 OK'
