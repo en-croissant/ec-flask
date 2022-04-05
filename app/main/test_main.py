@@ -39,6 +39,7 @@ def test_get_onelobby_notfound(api):
     assert b'Lobby not found' in app.get_data()
 
 
+
 def test_get_allchats(api):
     app = api.get('/chat')
     assert app.status == '200 OK'
