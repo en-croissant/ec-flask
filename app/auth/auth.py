@@ -30,6 +30,7 @@ def login():
                 raise exceptions.BadRequest()
             
             authed = check_password_hash(user.password_digest, req['password'])
+            print(authed)
             if not authed:
                 raise exceptions.Unauthorized('Incorrect password.')
             
@@ -64,21 +65,15 @@ def register():
             if user!=None:
                 return jsonify('Username already exists!'), 202
             
-            print(1)
             hash = generate_password_hash(password)
-            print(2)
             new_user = Users(
                 username = req['username'],
                 email = req['email'], 
                 password_digest = hash,
                 rank = 0
             )
-            print(new_user)
-            print(3)
             db.session.add(new_user)
-            print(4)
             db.session.commit()
-            print(5)
             return jsonify(f"New user was added!"), 201
         
         except:
