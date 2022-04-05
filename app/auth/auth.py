@@ -26,6 +26,8 @@ def login():
                 raise exceptions.BadRequest('No password provided')
             
             user = Users.query.filter_by(username=username).first()
+            if user==None:
+                raise exceptions.BadRequest()
             
             authed = check_password_hash(user.password_digest, req['password'])
             if not authed:
