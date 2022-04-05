@@ -31,8 +31,6 @@ def getAllUsers():
         try: 
             allUsers = Users.query.all()
             return  jsonify([e.serialize() for e in allUsers])
-        except exceptions.NotFound:
-            raise exceptions.NotFound("There are no users currently!")
         except:
             raise exceptions.InternalServerError()
     elif request.method == 'POST':
@@ -101,8 +99,6 @@ def getAllLobbies():
         try: 
             allLobby = Lobby.query.all()
             return  jsonify([e.serialize() for e in allLobby])
-        except exceptions.NotFound:
-            raise exceptions.NotFound("There are no lobbies to view at the moment!")
         except:
             raise exceptions.InternalServerError()
 

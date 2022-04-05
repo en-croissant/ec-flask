@@ -9,7 +9,6 @@ def test_get_allusers(api):
     assert app.status == '200 OK'
     assert b'user_id' in app.get_data()
 
-
 def test_get_oneuser(api):
     app = api.get('/users/1')
     assert app.status == '200 OK'
