@@ -24,10 +24,12 @@ CORS(main)
 def home_view():
         return "<h1>Hello world</h1>"
 
+
 @main.route('/users', methods=['GET'])
 def getAllUsers():
     allUsers = Users.query.all()
     return  jsonify([e.serialize() for e in allUsers])
+
 
 
 @main.get('/users/<int:user_id>')
@@ -37,8 +39,6 @@ def getUserById(user_id):
         return  jsonify([user.serialize()])
     except exceptions.NotFound:
         raise exceptions.NotFound("User not found!")
-
-
 
 @main.route('/lobby', methods=['GET','POST'])
 def getAllLobbies():
@@ -63,7 +63,7 @@ def getAllLobbies():
             raise exceptions.InternalServerError()
 
 
-
+            
 @main.route('/chat', methods=['GET','POST'])
 def getAllChats():
     if request.method == 'GET':
