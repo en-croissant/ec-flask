@@ -20,3 +20,8 @@ def test_get_oneuser_notfound(api):
     assert app.status == '404 NOT FOUND'
     assert b'User not found' in app.get_data()
 
+def test_get_alllobbies(api):
+    app = api.get('/lobby')
+    assert app.status == '200 OK'
+    assert b'player_1_key' in app.get_data()
+
