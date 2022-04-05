@@ -35,3 +35,9 @@ def test_404(api):
     assert app.status == '404 NOT FOUND'
 
 
+
+
+# def test_post_lobby(api):
+#     lobby_data = {'player_1_key': 1, 'player_2_key': 2, 'history': 'history101'}
+#     app= api.post('/lobby', data = lobby_data)
+#     assert app.status == '200 OK'
