@@ -25,3 +25,8 @@ def test_get_alllobbies(api):
     assert app.status == '200 OK'
     assert b'player_1_key' in app.get_data()
 
+def test_get_allchats(api):
+    app = api.get('/chat')
+    assert app.status == '200 OK'
+    assert b'message' in app.get_data()
+
