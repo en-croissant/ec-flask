@@ -38,10 +38,32 @@ def test_404(api):
 
 
 
-
 def test_post_lobby(api):
     lobby_data = json.dumps({'player_1_key': 1, 'player_2_key': 2, 'history': 'history101'})
     mock_headers = {'Content-Type': 'application/json'}
     app= api.post('/lobby', data = lobby_data, headers=mock_headers)
     assert app.status == '201 CREATED'
+
+
+
+def test_post_chat(api):
+    chat_data = json.dumps({'lobby_id': 1, 'user_id': 1, 'message': 'hello', 'time': '2022-04-05' })
+    mock_headers = {'Content-Type': 'application/json'}
+    app= api.post('/chat', data = chat_data, headers=mock_headers)
+    assert app.status == '201 CREATED'
+
+
+def test_post_lobby_500(api):
+    lobby_data = json.dumps({'player_1_key': 1, 'player_2_key': 2, 'historyy': 'history101'})
+    mock_headers = {'Content-Type': 'application/json'}
+    app= api.post('/lobby', data = lobby_data, headers=mock_headers)
+    assert app.status == '500 INTERNAL SERVER ERROR'
+
+
+def test_post_chat_500(api):
+    chat_data = json.dumps({'lobby_id': 1, 'user_id': 1, 'message': 'hello', 'timee': '2022-04-05' })
+    mock_headers = {'Content-Type': 'application/json'}
+    app= api.post('/chat', data = chat_data, headers=mock_headers)
+    assert app.status == '500 INTERNAL SERVER ERROR'
+
 
