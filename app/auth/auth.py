@@ -58,8 +58,8 @@ def register():
             username = req['username']
             password = req['password']
             
-            user = Users.query.filter('username'==username)
-            if user:
+            user = Users.query.filter_by(username=username).first()
+            if user!=None:
                 return jsonify('Username already exists!'), 202
             
             hash = generate_password_hash(password)
