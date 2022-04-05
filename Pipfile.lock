@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "487d05aec4264a826b38e8139b448fa9d0ce47d99a3a28e4b41ac48404c22b48"
+            "sha256": "ad7d389c9955a98e39de0286c1036c35cecabe329e58d76bbb39afd57a734931"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -417,6 +417,22 @@
             ],
             "index": "pypi",
             "version": "==3.0.0"
+        },
+        "pytest-flask-sqlalchemy": {
+            "hashes": [
+                "sha256:19cad31d654c2301dd2dd70d06a62e5dc4ea380500f4b89bbcb3d59a475f0cf6",
+                "sha256:34fa0f9a63c3892f54a8d11ab67f907c0e0911ac609e3cff5d518c3af6b897cd"
+            ],
+            "index": "pypi",
+            "version": "==1.0.2"
+        },
+        "pytest-mock": {
+            "hashes": [
+                "sha256:5112bd92cc9f186ee96e1a92efc84969ea494939c3aead39c50f421c4cc69534",
+                "sha256:6cff27cec936bf81dc5ee87f07132b807bcda51106b5ec4b90a04331cba76231"
+            ],
+            "markers": "python_full_version >= '3.7.0'",
+            "version": "==3.7.0"
         },
         "python-chess": {
             "hashes": [

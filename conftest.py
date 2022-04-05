@@ -12,4 +12,3 @@ def api():
 def sock():
     client = socketio.test_client(app)
     return client
-    
