@@ -30,3 +30,8 @@ def test_get_allchats(api):
     assert app.status == '200 OK'
     assert b'message' in app.get_data()
 
+def test_404(api):
+    app = api.get('/gg')
+    assert app.status == '404 NOT FOUND'
+
+
