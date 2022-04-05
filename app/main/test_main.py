@@ -15,3 +15,8 @@ def test_get_oneuser(api):
     assert app.status == '200 OK'
     assert b'user_id' in app.get_data()
 
+def test_get_oneuser_notfound(api):
+    app = api.get('/users/100')
+    assert app.status == '404 NOT FOUND'
+    assert b'User not found' in app.get_data()
+
