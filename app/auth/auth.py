@@ -33,7 +33,6 @@ def login():
             
             token = user.encode_auth_token(user.username)
             if token:
-                print(1)
                 response = {
                     'success': True,
                     'token': 'Bearer ' + token
