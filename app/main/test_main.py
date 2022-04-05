@@ -1,3 +1,6 @@
+import json
+
+
 def test_home(api):
     """connects to root route"""
     app = api.get('/')
@@ -36,7 +39,9 @@ def test_404(api):
 
 
 
-# def test_post_lobby(api):
-#     lobby_data = {'player_1_key': 1, 'player_2_key': 2, 'history': 'history101'}
-#     app= api.post('/lobby', data = lobby_data)
-#     assert app.status == '200 OK'
+def test_post_lobby(api):
+    lobby_data = json.dumps({'player_1_key': 1, 'player_2_key': 2, 'history': 'history101'})
+    mock_headers = {'Content-Type': 'application/json'}
+    app= api.post('/lobby', data = lobby_data, headers=mock_headers)
+    assert app.status == '201 CREATED'
+
