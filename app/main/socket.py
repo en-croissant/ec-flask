@@ -1,6 +1,7 @@
 from .. import socketio
 from flask_socketio import emit
 import chess  
+from app.models import Lobby
 
 def chess_game():
     @socketio.on('connect')
