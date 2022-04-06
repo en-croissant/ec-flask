@@ -36,13 +36,13 @@ def chess_game():
             board.push_san(data['data'])
             # [NOTE] Check how to format match history correctly
             #Lobby.query.get({"lobby_id":room}).update({"history":f"{match_history},{data['data']}"})
-            
+
             # Check for checkmate
             if board.is_checkmate():
                 # end game
                 pass
             # Broadcasts move to all users in room
-            emit('opponent move', {'chess move': data['data']}, to=room)
+            emit('opponent move', {'chessMove': data['data']}, to=room)
 
         @socketio.on('reset board')
         def test_reset_board():
