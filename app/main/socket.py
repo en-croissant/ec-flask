@@ -2,6 +2,7 @@ from .. import socketio
 from flask_socketio import emit, join_room
 import chess
 from app.models import Lobby
+import random
 
 def chess_game():
     @socketio.on('connect')
@@ -15,25 +16,28 @@ def chess_game():
         join_room(room)
         
         # Get lobby info
-        match_info = Lobby.query.filter_by("lobby_id"==room).first()
-        match_history = match_info['history']
-        player_1 = match_info['player_1_key']
-        player_2 = match_info['player_2_key']
+        #match_info = Lobby.query.filter_by("lobby_id"==room).first()
+        #match_history = match_info['history']
+        #player_1 = match_info['player_1_key']
+        #player_2 = match_info['player_2_key']
 
         # Get latest board state
         board = chess.Board()
-        emit('inital board', {'board':board.board_fen})
+        emit('inital board', {'board':board.board_fen()})
 
         # [TODO] Checks if it is user's turn to move
         #data['user_id']
 
+        print("user joined room /play")
+
         @socketio.on('move piece')
         def test_move(data):
+            print(f"moving to {data['move']}")
             # [TODO] Check if it is the player's turn
 
             # Save move to history
 
-            board.push_san(data['data'])
+            board.push_san(data['move'])
             # [NOTE] Check how to format match history correctly
             #Lobby.query.get({"lobby_id":room}).update({"history":f"{match_history},{data['data']}"})
 
@@ -42,7 +46,10 @@ def chess_game():
                 # end game
                 pass
             # Broadcasts move to all users in room
-            emit('opponent move', {'chessMove': data['data']}, to=room)
+            print("""
+            
+            """)
+            emit('opponent move', {'chessMove': data['move']}, to=room)
 
         @socketio.on('reset board')
         def test_reset_board():
