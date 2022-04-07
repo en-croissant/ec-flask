@@ -3,6 +3,12 @@ from unittest import mock
 import werkzeug.security as security
 
 def test_register(api):
+    new_user_data = json.dumps({'username': "tester", 'email': "test@email.com", 'password': 'test'})
+    mock_headers = {'Content-Type': 'application/json'}
+    app= api.post('/auth/register', data = new_user_data, headers=mock_headers)
+    assert app.status == '201 CREATED'
+    
+def test_register_again(api):
     new_user_data = json.dumps({'username': "testerman", 'email': "test@email.com", 'password': 'test'})
     mock_headers = {'Content-Type': 'application/json'}
     app= api.post('/auth/register', data = new_user_data, headers=mock_headers)
