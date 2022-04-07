@@ -50,9 +50,10 @@ def getAllLobbies():
     elif request.method == 'POST':
         try:
             req = request.get_json()
-            player_1_key = Users.query.get("username"==req['player_1_username'])['user_id']
-            player_2_key = Users.query.get("username"==req['player_2_username'])['user_id']
-            return f"{player_1_key}, {player_2_key}"
+            name_1 = req["player_1_username"]
+            name_2 = req["player_2_username"]
+            player_1_key = Users.query.filter_by(username=name_1).first().user_id
+            player_2_key = Users.query.filter_by(username=name_2).first().user_id
             new_lobby = Lobby(
                 player_1_key = player_1_key,
                 player_2_key = player_2_key, 
@@ -60,7 +61,8 @@ def getAllLobbies():
             )
             db.session.add(new_lobby)
             db.session.commit()
-            return new_lobby['lobby_id'], 201
+            print(new_lobby.serialize())
+            return jsonify(new_lobby.lobby_id), 201
 
         except: 
             raise exceptions.InternalServerError()
