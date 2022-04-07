@@ -20,6 +20,7 @@ chess = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-flask-sqlalchemy = "*"
+gevent = "*"
 
 [dev-packages]
 
