@@ -10,10 +10,22 @@ This repo hosts the server side of [En Croissant](https://github.com/en-croissan
 
 ## Table of Contents
 
+- [Welcome to En Croissant!](#welcome-to-en-croissant)
+  - [Table of Contents](#table-of-contents)
 - [Installation & Usage](#installation--usage)
-- [Technologies](#technologies)
+    - [Installation & Local Usage](#installation--local-usage)
+    - [Deployment](#deployment)
+  - [Technologies](#technologies)
 - [Database Schema](#database-schema)
 - [Routes](#routes)
+  - [Auth Routes](#auth-routes)
+      - [Body for registration request](#body-for-registration-request)
+      - [Body for login request](#body-for-login-request)
+  - [User Routes](#user-routes)
+  - [Lobby Routes](#lobby-routes)
+      - [Body for lobby creation request](#body-for-lobby-creation-request)
+  - [Chat Routes](#chat-routes)
+      - [Body for chat request](#body-for-chat-request)
 
 # Installation & Usage
 
@@ -36,22 +48,17 @@ This server is continuosly deployed on [Heroku](https://en-croissant.herokuapp.c
 - [Flask 🔗](https://flask.palletsprojects.com/en/2.1.x/)
 - [Socket.io 🔗](https://socket.io/)
 - [Pytest 🔗](https://docs.pytest.org/en/7.1.x/s)
-- [MongoDB 🔗](https://www.mongodb.com/)
-- [MongoDB Atlas 🔗](https://www.mongodb.com/atlas/database)
+- [PostgreSQL 🔗](https://www.postgresql.org/)
 
 # Database Schema
 
-- `users`
+We made use of Postgres for our database. 
 
-#### Users schema example:
+![screenshot](app/images/db_schema.png)
 
-```json
-{
-  "username": "test_guy",
-  "email": "test_guy@email.com",
-  "password_digest": "$2a$10$tCppT1FG0aL9Hj4sHGyZHh6r5OUTLEvAcIorq"
-}
-```
+Note: The chat feature is not currently implemented but storage is set up
+
+View the live schema [here](https://lucid.app/lucidchart/5cc2dc81-b179-4890-b346-ee6bbebe02fe/edit?invitationId=inv_45439b7f-d487-4947-b733-a4a177009eb2&referringApp=slack&page=0_0#&referringApp=slack&loaddialog=SlackLinkPrompt)
 
 # Routes
 
@@ -89,3 +96,40 @@ This server is continuosly deployed on [Heroku](https://en-croissant.herokuapp.c
 | /users/:username | GET           | show       |
 
 
+## Lobby Routes
+
+| **URL**          | **HTTP Verb** | **Action** |
+| ---------------- | ------------- | ---------- |
+| /lobby           | GET           | index      |
+| /lobby           | POST          | create     |
+| /lobby/:lobby_id | GET           | show       |
+
+#### Body for lobby creation request
+
+```json
+{
+  "player_1_username": "example_host",
+  "player_2_username": "example_opponent",
+  "history": "" 
+}
+```
+
+Note: history is initially an empty string as no moves have been made
+
+## Chat Routes
+
+| **URL**          | **HTTP Verb** | **Action** |
+| ---------------- | ------------- | ---------- |
+| /chat            | GET           | index      |
+| /chat            | POST          | create     |
+
+#### Body for chat request
+
+```json 
+{
+  "lobby_id": 1,
+  "user_id": 1,
+  "message": "example message",
+  "time": "<time>"
+}
+```
