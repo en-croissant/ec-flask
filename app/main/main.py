@@ -52,6 +52,7 @@ def getAllLobbies():
             req = request.get_json()
             player_1_key = Users.query.get("username"==req['player_1_username'])['user_id']
             player_2_key = Users.query.get("username"==req['player_2_username'])['user_id']
+            return f"{player_1_key}, {player_2_key}"
             new_lobby = Lobby(
                 player_1_key = player_1_key,
                 player_2_key = player_2_key, 
