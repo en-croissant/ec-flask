@@ -56,7 +56,7 @@ We made use of Postgres for our database.
 
 ![screenshot](app/images/db_schema.png)
 
-Note: The chat feature is not curently implemented but storage is set up
+Note: The chat feature is not currently implemented but storage is set up
 
 View the live schema [here](https://lucid.app/lucidchart/5cc2dc81-b179-4890-b346-ee6bbebe02fe/edit?invitationId=inv_45439b7f-d487-4947-b733-a4a177009eb2&referringApp=slack&page=0_0#&referringApp=slack&loaddialog=SlackLinkPrompt)
 
@@ -110,9 +110,11 @@ View the live schema [here](https://lucid.app/lucidchart/5cc2dc81-b179-4890-b346
 {
   "player_1_username": "example_host",
   "player_2_username": "example_opponent",
-  "history": "" // Empty string as no moves have been made
+  "history": "" 
 }
 ```
+
+Note: history is initially an empty string as no moves have been made
 
 ## Chat Routes
 
@@ -128,6 +130,6 @@ View the live schema [here](https://lucid.app/lucidchart/5cc2dc81-b179-4890-b346
   "lobby_id": 1,
   "user_id": 1,
   "message": "example message",
-  "time": "<time>" // format to be decided
+  "time": "<time>"
 }
 ```
